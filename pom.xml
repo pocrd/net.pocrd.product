@@ -48,7 +48,7 @@
         <api-util_version>1.2.3-SNAPSHOT</api-util_version>
         <!-- dependency versions -->
         <!-- 2nd party libs-->
-        <product_version>0.0.1-SNAPSHOT</product_version>
+        <product_version>0.1.0-SNAPSHOT</product_version>
         <!-- common libs -->
         <spring_version>4.0.5.RELEASE</spring_version>
         <dubbo_version>2.5.4-pocrd</dubbo_version>
