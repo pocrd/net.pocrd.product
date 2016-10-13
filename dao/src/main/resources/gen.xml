@@ -14,9 +14,9 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://xxx.mysql.rds.aliyuncs.com/xxx?autoReconnect=true&amp;useUnicode=true&amp;characterset=utf-8"
-                        userId="xxx"
-                        password="xxx">
+                        connectionURL="jdbc:mysql://localhost/product?autoReconnect=true&amp;useUnicode=true&amp;characterset=utf-8"
+                        userId="test2"
+                        password="123456">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -24,19 +24,31 @@
         </javaTypeResolver>
 
         <!-- 生成vo对象 -->
-        <javaModelGenerator targetPackage="net.pocrd.product"
+        <javaModelGenerator targetPackage="net.pocrd.product.dao.entity"
                             targetProject="/home/gen">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 采用ANNOTATEDMAPPER这种类型的Client，是不需要生成SQLMap文件的，这样比较方便一些 -->
-        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="net.pocrd.product"
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="net.pocrd.product.dao.mapper"
                              targetProject="/home/gen"> <!--\src\main\java">-->
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!-- 需要生成的数据库表的List-->
-        <table tableName="table" domainObjectName="XXXInfo"/>
+        <table tableName="mt_product_display_label" domainObjectName="DisplayLabel"/>
+        <table tableName="mt_product_static_resource" domainObjectName="StaticResource"/>
+        <table tableName="mt_product_item" domainObjectName="Item"/>
+        <table tableName="mtr_product_item_sku" domainObjectName="Item_Sku"/>
+        <table tableName="mt_product_spu" domainObjectName="Spu"/>
+        <table tableName="mt_product_sku" domainObjectName="Sku"/>
+        <table tableName="mtr_product_spu_attr" domainObjectName="Spu_Attribute"/>
+        <table tableName="mtr_product_sku_attr_value" domainObjectName="Sku_AttributeValue"/>
+        <table tableName="mt_product_attr" domainObjectName="Attribute"/>
+        <table tableName="mt_product_attr_value" domainObjectName="AttributeValue"/>
+        <table tableName="mt_product_category" domainObjectName="Category"/>
+
+
     </context>
 </generatorConfiguration>
