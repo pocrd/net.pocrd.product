@@ -1,36 +1,30 @@
 package net.pocrd.product.service.http;
 
-import net.pocrd.product.api.DemoService;
-import net.pocrd.product.api.DemoThirdPartyService;
-import net.pocrd.product.dao.dto.DemoDTO;
-import net.pocrd.product.dao.mapper.DemoMapper;
-import net.pocrd.product.entity.DemoEntity;
-import net.pocrd.product.entity.DemoEnum;
-import net.pocrd.product.entity.DemoReturnCode;
 import net.pocrd.define.Evaluater;
 import net.pocrd.dubboext.DubboExtProperty;
 import net.pocrd.entity.ApiReturnCode;
 import net.pocrd.entity.ServiceException;
 import net.pocrd.entity.ServiceRuntimeException;
+import net.pocrd.product.api.DemoService;
+import net.pocrd.product.dao.entity.DemoDTO;
+import net.pocrd.product.entity.DemoEntity;
+import net.pocrd.product.entity.DemoEnum;
+import net.pocrd.product.entity.DemoReturnCode;
 import net.pocrd.util.EvaluaterProvider;
 import net.pocrd.util.RawString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class DemoServiceImpl implements DemoService {
-    private static final Logger    logger    = LoggerFactory.getLogger(DemoServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(DemoServiceImpl.class);
     private static final Evaluater evaluater = EvaluaterProvider.getEvaluater(DemoEntity.class, DemoDTO.class);
-    @Autowired
-    private DemoMapper            demoMapper;
-    @Autowired
-    private DemoThirdPartyService demoThirdPartyService;
+    //@Autowired
+    //private DemoDTOMapper demoDTOMapper;
 
     /**
      * 边界异常处理
      *
      * @param name
-     *
      * @throws ServiceException
      */
     @Override
@@ -38,9 +32,8 @@ public class DemoServiceImpl implements DemoService {
         DemoEntity result = null;
         try {
             result = new DemoEntity();
-            DemoDTO demoDTO = demoMapper.queryEntity(name);
-            demoDTO.setId(demoThirdPartyService.testThirdParty(demoDTO.getId()));
-            evaluater.evaluate(result, demoDTO);
+            result.id = 1;
+            result.name = name;
         } catch (ServiceRuntimeException sre) {
             logger.error("api failed.", sre);
             throw new ServiceException("api failed.", sre);
